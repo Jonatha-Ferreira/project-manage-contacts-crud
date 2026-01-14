@@ -7,27 +7,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('contacts.index') }}">Alfasof - Gestão de Contatos</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    @auth
-                        <span class="nav-link text-light">Welcome, {{ Auth::user()->name }}</span>
-                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit" class="btn btn-link nav-link">Logout</button>
-                        </form>
-                    @else
-                        <a class="nav-link" href="{{ route('login') }}">Login (Admin)</a>
-                    @endauth
-                </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('contacts.index') }}">Alfasoft</a>
+            <div class="navbar-nav ms-auto">
+                @auth
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link text-white" style="text-decoration: none;">Sair</button>
+                    </form>
+                @else
+                    <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                @endauth
             </div>
         </div>
     </nav>
 
     <div class="container mt-4">
-        @if('session('success')')
+        @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
