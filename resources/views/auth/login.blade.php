@@ -12,9 +12,11 @@
                     @csrf
                     
                     <div class="mb-3">
-                        <label for="email" class="form-label">E-mail (admin@admin.com):</label>
-                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autofocus>
-                        @error('email')
+                        <label for="username" class="form-label">Usuário (admin):</label>
+                        <input type="text" name="username" id="username" 
+                            class="form-control @error('username') is-invalid @enderror" 
+                            value="{{ old('username') }}" required autofocus>
+                        @error('username')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

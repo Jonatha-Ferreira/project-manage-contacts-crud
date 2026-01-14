@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'jomjom1jonatha@gmail.com',
-            'password' => bcrypt('admin'),
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123456'),
         ]);
 
         $this->call(ContactSeeder::class);

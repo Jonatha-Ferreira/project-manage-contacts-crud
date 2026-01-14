@@ -21,7 +21,9 @@ class ContactRequest extends FormRequest
      */
     public function rules(): array
     {
-        $contactId = $this->route('contact') ? $this->contact?->id : null;
+        $contactId = $this->route('contact') instanceof \App\Models\Contact 
+            ? $this->route('contact')->id 
+            : $this->route('contact');
 
         return [
             'name' => 'required|string|min:6|max:255',

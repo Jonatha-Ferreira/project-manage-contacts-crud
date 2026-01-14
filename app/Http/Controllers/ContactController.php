@@ -14,7 +14,6 @@ class ContactController extends Controller
      */
     public function __construct()
     {
-        // Todos precisam de login, exceto a lista (index)
         $this->middleware('auth')->except(['index']);
     }
 
@@ -23,7 +22,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::orderBy('name', 'asc')->get();
         return view('contacts.index', compact('contacts'));
     }
 
@@ -63,9 +62,11 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactRequest $request, Contact $contact) // Altere Request para ContactRequest
     {
-        $contact->update($request->validated());
+        // Agora o validated() funcionará e aplicará as regras do enunciado
+        $contact->update($request->validated()); 
+        
         return redirect()->route('contacts.index')->with('success', 'Contact updated successfully.');
     }
 
